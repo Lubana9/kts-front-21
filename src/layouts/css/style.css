@@ -155,7 +155,7 @@ h4 {
 .card-content .icon {
   width: 13px;
   height: 13px;
-  fill: var(--color-starAccent);
+  fill: var(--color-starAccent); /* Не работает  */
 }
 .card-content .card-content_txt {
   vertical-align: bottom;
