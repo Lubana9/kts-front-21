@@ -18,3 +18,14 @@ html {
 *::before {
   box-sizing: border-box;
 }
+
+/*Defining typography*/
+body {
+  background: var(--color-body);
+  font-family: "Roboto", sans-serif;
+}
+
+h4 {
+  font-weight: bold;
+  font-size: 1.6rem;
+}
