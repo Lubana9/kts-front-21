@@ -160,3 +160,24 @@ h4 {
 .card-content .card-content_txt {
   vertical-align: bottom;
 }
+
+/* grid */
+.grid {
+  display: grid;
+}
+.grid > .grid--1x2 {
+  grid-template-columns: 2fr 1fr;
+}
+.grid--1x2 {
+  margin: 2rem 0 3rem 0;
+}
+
+.grid--1x3 {
+  gap: 1.5rem;
+}
+@media screen and (min-width: 768px) {
+  .grid--1x3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+  }
+}
