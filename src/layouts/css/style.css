@@ -29,3 +29,36 @@ h4 {
   font-weight: bold;
   font-size: 1.6rem;
 }
+
+/*input*/
+.input {
+  border-radius: 6px;
+  border: 1px solid var(--color-Border);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.4rem;
+  outline: 0;
+  padding: 1.7rem 7.5rem 1.7rem 1.2rem;
+  margin-right: 1rem;
+}
+
+.input-group {
+  display: flex;
+}
+.input-group .input {
+  flex-grow: 1;
+}
+
+::placeholder {
+  color: var(--color-Hint);
+}
+
+.input:focus {
+  border-color: var(--color-accent);
+}
+
+.input:disabled {
+  background: var(--color-body);
+  border-color: var(--color-Border);
+  color: var(--color-Hint);
+}
