@@ -1,0 +1,20 @@
+html {
+  font-size: 62.5%;
+}
+
+:root {
+  --color-accent: #ff5555;
+  --color-background: #fff;
+  --color-body: #e5e5e5;
+  --color-Border: #d9d9d9;
+  --color-default: #000;
+  --color-Hint: #7e7e7e;
+  --color-linkHover: #208fbf;
+  --color-starAccent: #ff9432;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
