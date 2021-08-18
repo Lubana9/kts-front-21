@@ -112,3 +112,51 @@ h4 {
   width: 100%;
   clip-path: circle(50% at 50% 50%);
 }
+
+/* Card */
+.card {
+  display: flex;
+  border-radius: 6px;
+  border: 1px solid var(--color-Border);
+  padding: 1rem;
+}
+.card:hover {
+  cursor: pointer;
+}
+.card-primary {
+  background: var(--color-background);
+}
+.card-body {
+  color: var(--color-Hint);
+  font-size: 1.4rem;
+  margin: 0 1rem;
+}
+.card-heading {
+  margin: 0.5rem 0 0 0;
+  padding: 0.5rem 0;
+  color: var(--color-default);
+  white-space: nowrap;
+  width: 50%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-link {
+  margin-bottom: 0.5rem;
+}
+.card-link > a {
+  text-decoration: none;
+}
+
+.card-link > a:hover {
+  color: var(--color-linkHover);
+}
+
+.card-content .icon {
+  width: 13px;
+  height: 13px;
+  fill: var(--color-starAccent);
+}
+.card-content .card-content_txt {
+  vertical-align: bottom;
+}
