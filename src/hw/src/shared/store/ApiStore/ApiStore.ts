@@ -2,12 +2,13 @@
 import {ApiResponse, IApiStore, RequestParams} from "./types";
 
 export default class ApiStore implements IApiStore {
-    constructor() {
+  readonly baseUrl: string;
+    constructor(baseUrl:string) {
 
-      this.baseUrl = '${this.baseUrl}/orgs/${orgName}/repos';
+      this.baseUrl =baseUrl;
       
     }
-  baseUrl: string;
+ 
 
    async request<SuccessT, ErrorT = any, ReqT = {}>(params: RequestParams<ReqT>): Promise<ApiResponse<SuccessT, ErrorT>> {
       try {
