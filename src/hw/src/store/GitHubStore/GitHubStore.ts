@@ -4,11 +4,12 @@ import {IGitHubStore} from "./types";
 export default class GitHubStore implements IGitHubStore {
     private readonly apiStore = new ApiStore();
     baseUrl: string;
-    constructor() {
 
-        this.baseUrl = '${this.baseUrl}/orgs/${orgName}/repos';
-        
-      }
+    constructor(baseUrl:string) {
+
+      this.baseUrl =baseUrl;
+      
+    }
     // TODO: не забудьте передать baseUrl в конструктор
 
     // TODO: реализовать интерфейс IGitHubStore
