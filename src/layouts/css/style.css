@@ -38,11 +38,11 @@ body {
 .input-group {
   display: flex;
 }
-.input-group .input {
+.input-group_input {
   flex-grow: 1;
 }
 
-::placeholder {
+.input::placeholder {
   color: var(--color-Hint);
 }
 
@@ -59,8 +59,12 @@ body {
 /*search button with icon*/
 .btn-search {
   background: var(--color-accent);
+  border: 0;
+  outline: 0;
+  border-radius: var(--radius);
+  padding: 16px;
 }
-.btn-search .icon {
+.btn-search_icon {
   height: 18px;
   vertical-align: middle;
   width: 18px;
@@ -97,7 +101,7 @@ body {
   background: var(--color-accent);
 }
 
-.icon-container img {
+.icon-content_img {
   width: 100%;
   clip-path: circle(50% at 50% 50%);
 }
@@ -127,27 +131,26 @@ body {
   width: 50%;
   font-weight: bold;
   font-size: 16px;
-
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .card-link {
   margin-bottom: 5px;
 }
-.card-link > a {
+.card-link_txt {
   text-decoration: none;
 }
 
-.card-link > a:hover {
+.card-link_txt:hover {
   color: var(--color-linkHover);
 }
 
-.card-content .icon {
+.card-content_icon {
   width: 13px;
   height: 13px;
   fill: var(--color-starAccent); /* Не работает  */
 }
-.card-content .card-content_txt {
+.card-content_txt {
   vertical-align: bottom;
 }
 
