@@ -23,11 +23,6 @@ body {
   line-height: 1.5;
 }
 
-h4 {
-  font-weight: bold;
-  font-size: 1.6rem;
-}
-
 /*input*/
 .input {
   border-radius: 6px;
@@ -135,6 +130,8 @@ h4 {
   color: var(--color-default);
   white-space: nowrap;
   width: 50%;
+  font-weight: bold;
+  font-size: 1.6rem;
 
   overflow: hidden;
   text-overflow: ellipsis;
