@@ -29,10 +29,9 @@ body {
   border: 1px solid var(--color-Border);
   cursor: pointer;
   display: inline-block;
-  font-size: 1.4rem;
   outline: 0;
-  padding: 1.7rem 7.5rem 1.7rem 1.2rem;
-  margin-right: 1rem;
+  padding: 17px 75px 17px 12px;
+  margin-right: 10px;
 }
 
 .input-group {
@@ -62,12 +61,12 @@ body {
   border-radius: 6px;
   border: 0;
   outline: 0;
-  padding: 1.6rem;
+  padding: 16px;
 }
 .btn-search .icon {
-  height: 1.8rem;
+  height: 18px;
   vertical-align: middle;
-  width: 1.8rem;
+  width: 18px;
 }
 
 .btn-search:hover {
@@ -111,7 +110,7 @@ body {
   display: flex;
   border-radius: 6px;
   border: 1px solid var(--color-Border);
-  padding: 1rem;
+  padding: 10px;
 }
 .card:hover {
   cursor: pointer;
@@ -121,23 +120,22 @@ body {
 }
 .card-body {
   color: var(--color-Hint);
-  font-size: 1.4rem;
-  margin: 0 1rem;
+  margin: 0 10px;
 }
 .card-heading {
-  margin: 0.5rem 0 0 0;
-  padding: 0.5rem 0;
+  margin: 5px 0 0 0;
+  padding: 5px 0;
   color: var(--color-default);
   white-space: nowrap;
   width: 50%;
   font-weight: bold;
-  font-size: 1.6rem;
+  font-size: 16px;
 
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .card-link {
-  margin-bottom: 0.5rem;
+  margin-bottom: 5px;
 }
 .card-link > a {
   text-decoration: none;
@@ -164,15 +162,15 @@ body {
   grid-template-columns: 2fr 1fr;
 }
 .grid--1x2 {
-  margin: 2rem 0 3rem 0;
+  margin: 20px 0 30px 0;
 }
 
 .grid--1x3 {
-  gap: 1.5rem;
+  gap: 15px;
 }
 @media screen and (min-width: 768px) {
   .grid--1x3 {
     grid-template-columns: repeat(3, 1fr);
-    gap: 4rem;
+    gap: 40px;
   }
 }
