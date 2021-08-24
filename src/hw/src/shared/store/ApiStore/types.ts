@@ -1,12 +1,12 @@
 // Перечисление методов HTTP-запроса
-enum HTTPMethod {
+export enum HTTPMethod {
     get= 'GET',
     post ='POST'
 }
 
 // Параметры запроса
 export type RequestParams<ReqT> = {
-    method: HTTPMethod.get; // Метод запроса, GET или POST
+    method: HTTPMethod; // Метод запроса, GET или POST
     endpoint: string; // API-endpoint, на который делается запрос
     headers: Record<string, string>; // Объект с передаваемыми HTTP-заголовками
 
@@ -19,10 +19,8 @@ export type RequestParams<ReqT> = {
 }
 
 // Перечисление статусов ответа
-enum StatusHTTP {
-    OK = 200,
-    BAD_REQUEST = 400,
-    NOT_FOUND = 404
+export enum StatusHTTP {
+  unexpectedErorr = 'Unexpected_Erorr'
 }
 
 // Ответ API
@@ -30,11 +28,16 @@ export type ApiResponse<SuccessT, ErrorT> =
     | {
     success: true;
     data: SuccessT;
-    status: StatusHTTP;
+    status: number;
+}
+    | {
+        success: false;
+        data: ErrorT;
+        status: number;
 }
     | {
     success: false;
-    data: ErrorT;
+    data: any;
     status: StatusHTTP;
 };
 
