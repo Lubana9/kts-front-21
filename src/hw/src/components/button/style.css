@@ -1,0 +1,20 @@
+@import "@styles/style.css";
+
+.btn-search {
+  background: var(--color-accent);
+  border: 0;
+  outline: 0;
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.btn-search:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.btn-search:disabled {
+  background: var(--color-Border);
+  cursor: auto;
+  opacity: 1;
+}

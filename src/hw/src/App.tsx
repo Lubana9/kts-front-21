@@ -1,13 +1,11 @@
-import Input from '@components/input';
-import StarIcon from '@components/starIcon';
+
+import Button from '@components/button';
 import './App.css';
 
 function App() {
   return (
     <div >
-      <StarIcon>
-        
-    </StarIcon>
+      <Button></Button>
     </div>
   );
 }
