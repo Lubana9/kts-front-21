@@ -8,6 +8,9 @@ gitHubStore
     organizaionName: EXAMPLE_ORGANIZATION,
   })
   .then((result: ApiResponse<RepoItem[], any>) => {
+    if (result.success) {
+      console.log(result.data.map(rep => rep.name));
+    }
     // eslint-disable-next-line no-console
-    console.log(result); // в консоли появится список репозиториев в ktsstudio
+    // в консоли появится список репозиториев в ktsstudio
   });

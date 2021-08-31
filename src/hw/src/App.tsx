@@ -4,11 +4,12 @@ import Button from '@components/button';
 import RepoTile from '@components/repoTile';
 
 import './App.css';
+import ReposSearchPage from './pages';
 
 function App() {
   return (
     <div >
-      <RepoTile/>
+      <ReposSearchPage/>
     </div>
   );
 }

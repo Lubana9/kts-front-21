@@ -25,11 +25,11 @@ const RepoTile: React.FC<RepoItem> = (item) => {
             className="card card-primary">
             <Avatar />
             <div className="card-body">
-                <h4 className="card-heading">{handelName }</h4>
-                <div className="card-link"> <a className="card-link_txt " href="#">kts</a></div>
+                <h4 className="card-heading">{handelName }kts-school-frontend </h4>
+                <div className="card-link"> <a className="card-link_txt " href="#">ktsstudio</a></div>
                 <div className="card-content ">
                     <SatrIcon />
-                    <span className="card-content_txt"> `${} &ensp; ${}` </span>
+                    <span className="card-content_txt"> 123 &ensp; Updated 21 Jul </span>
                 </div>
             </div>
         </div>
