@@ -16,7 +16,7 @@ const RepoTile: React.FC<RepoItem> = (item) => {
     }
 
     const handelName = () => {
-        console.log(item.name)
+        return item.name
     }
     return (
         <>
