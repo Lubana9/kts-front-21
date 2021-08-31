@@ -1,0 +1,176 @@
+:root {
+  --color-accent: #ff5555;
+  --color-background: #fff;
+  --color-body: #e5e5e5;
+  --color-Border: #d9d9d9;
+  --color-default: #000;
+  --color-Hint: #7e7e7e;
+  --color-linkHover: #208fbf;
+  --color-starAccent: #ff9432;
+  --radius: 6px;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+/*Defining typography*/
+body {
+  background: var(--color-body);
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/*input*/
+.input {
+  border-radius: var(--radius);
+  border: 1px solid var(--color-Border);
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  padding: 17px 75px 17px 12px;
+  margin-right: 10px;
+}
+
+.input-group {
+  display: flex;
+}
+.input-group_input {
+  flex-grow: 1;
+}
+
+.input::placeholder {
+  color: var(--color-Hint);
+}
+
+.input:focus {
+  border-color: var(--color-accent);
+}
+
+.input:disabled {
+  background: var(--color-body);
+  border-color: var(--color-Border);
+  color: var(--color-Hint);
+}
+
+/*search button with icon*/
+.btn-search {
+  background: var(--color-accent);
+  border: 0;
+  outline: 0;
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.btn-search_icon {
+  height: 18px;
+  vertical-align: middle;
+  width: 18px;
+}
+
+.btn-search:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.btn-search:disabled {
+  background: var(--color-Border);
+  cursor: auto;
+  opacity: 1;
+}
+
+/* Card icon*/
+.icon-container {
+  align-items: center;
+  border-radius: 50%;
+  display: inline-flex;
+  height: 80px;
+  justify-content: center;
+  width: 80px;
+}
+
+.icon_content_txt {
+  font-size: 40px;
+  color: var(--color-background);
+  font-weight: 700;
+}
+
+.icon-accent {
+  background: var(--color-accent);
+}
+
+.icon-content_img {
+  width: 100%;
+  clip-path: circle(50% at 50% 50%);
+}
+
+/* Card */
+.card {
+  display: flex;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-Border);
+  padding: 10px;
+}
+.card:hover {
+  cursor: pointer;
+}
+.card-primary {
+  background: var(--color-background);
+}
+.card-body {
+  color: var(--color-Hint);
+  margin: 0 10px;
+}
+.card-heading {
+  margin: 5px 0 0 0;
+  padding: 5px 0;
+  color: var(--color-default);
+  white-space: nowrap;
+  width: 50%;
+  font-weight: bold;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-link {
+  margin-bottom: 5px;
+}
+.card-link_txt {
+  text-decoration: none;
+}
+
+.card-link_txt:hover {
+  color: var(--color-linkHover);
+}
+
+.card-content_icon {
+  width: 13px;
+  height: 13px;
+  fill: var(--color-starAccent); /* Не работает  */
+}
+.card-content_txt {
+  vertical-align: bottom;
+}
+
+/* grid */
+.grid {
+  display: grid;
+}
+.grid > .grid--1x2 {
+  grid-template-columns: 2fr 1fr;
+}
+.grid--1x2 {
+  margin: 20px 0 30px 0;
+}
+
+.grid--1x3 {
+  gap: 15px;
+}
+@media screen and (min-width: 768px) {
+  .grid--1x3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+}
