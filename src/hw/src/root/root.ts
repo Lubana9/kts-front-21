@@ -11,7 +11,9 @@ export const OrgName = () => {
     })
     .then((result: ApiResponse<RepoItem[], any>) => {
       if (result.success) {
-        return result.data.map((rep) => rep.name);
+        console.log(result.data.map((rep) => rep.name));
       }
     });
 };
+
+OrgName();

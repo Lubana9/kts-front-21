@@ -1,39 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Avatar from "@components/avatar/avatar";
-import SatrIcon from "@components/starIcon/index";
 import { RepoItem } from "@store/GitHubStore/types";
 import "./style.css";
+import StarIcon from "@components/starIcon/index";
+import GitHubStore from "@store/GitHubStore";
 
 export type RepoTileProps = {
-  item: RepoItem;
+  item?: RepoItem;
+  userData: any;
 };
-const RepoTile: React.FC<RepoItem> = (item) => {
-  const handelClick = () => {
-    // eslint-disable-next-line no-console
-    console.log("clicked");
-  };
-
-  const handelName = () => {
-    return item.name;
-  };
+const RepoTile: React.FC<RepoTileProps> = ({userData}) => {
+ 
   return (
-    <>
-      <div onClick={handelClick} className="card card-primary">
-        <Avatar />
+
+
+      <>
+      <div  className="card card-primary">
+        <Avatar letter={userData.name[0]} img={userData.avatar_url} />
         <div className="card-body">
-          <h4 className="card-heading">{handelName}kts-school-frontend </h4>
+          <h4 className="card-heading">{userData.name}</h4>
           <div className="card-link">
             {" "}
-            <a className="card-link_txt " href="#">
-              ktsstudio
+            <a className="card-link_txt " href= ''>
+            {userData.owner.login}
             </a>
           </div>
           <div className="card-content ">
-            <SatrIcon />
+            <StarIcon />
             <span className="card-content_txt">
-              {" "}
-              123 &ensp; Updated 21 Jul{" "}
+              
+              {userData.stargazers_count }&ensp; {userData.updated_at}
             </span>
           </div>
         </div>
@@ -42,4 +39,5 @@ const RepoTile: React.FC<RepoItem> = (item) => {
   );
 };
 
-export default RepoTile;
+export default React.memo(RepoTile);
+

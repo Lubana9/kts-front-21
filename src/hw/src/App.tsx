@@ -6,11 +6,11 @@ import RepoTile from '@components/repoTile';
 import './App.css';
 import ReposSearchPage from './pages';
 
-function App() {
+const App = () => {
   return (
-    <div >
+  
       <ReposSearchPage/>
-    </div>
+  
   );
 }
 

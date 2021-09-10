@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 const SearchIcon: React.FC = () => {
   return (
-    <>
+   
       <svg
         className="search_icon"
         width="18"
@@ -16,8 +16,8 @@ const SearchIcon: React.FC = () => {
           fill="white"
         />
       </svg>
-    </>
+ 
   );
 };
 
-export default SearchIcon;
+export default React.memo(SearchIcon);
