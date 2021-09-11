@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import RepoTile from "@components/repoTile";
 import "./style.css";
 import SearchIcon from "@components/searchIcon";
-
+import axios from "axios";
+import { Link, useParams } from "react-router-dom";
 
 const ReposSearchPage: React.FC = () => {
   const [repos, setRepos] = useState([]);
   const [allRepos, setAllRepos] = useState([]);
+
 
   useEffect(() => {
     (
@@ -40,25 +42,21 @@ const ReposSearchPage: React.FC = () => {
         
   return (
     <>
-      <div className="grid grid--1x2">
-        <div className='input-group'>
+      <div className="grid grid-1x2">
+        <div className="input-group">
           <input type="text"
             className="input input-group_input"
             placeholder="Введите название организации"
             onChange={handelFilter}
           />
-          <button className="btn-search" type='submit'  >
-          <SearchIcon />
-          </button>
+          <button className="btn-search" type='submit'  >  <SearchIcon /></button>
         </div>
       </div>
-
-      <div className= "grid grid--1x3">
-  {repos.map((user:any, id:number) => {
-       return  <RepoTile userData={user} key= {id}  />
+      <div className="grid grid--1x3">
+               {repos.map((user:any) => {
+                 return <Link className="card-link_txt" to={`/repos/${user.id}`}> <RepoTile userData={user} key= {user.id}  /> </Link>
   })
-        }
-      </div>
+  }</div>
     </>
   );
 };

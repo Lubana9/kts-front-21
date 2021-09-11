@@ -1,15 +1,17 @@
-
-import Avatar from '@components/avatar';
-import Button from '@components/button';
-import RepoTile from '@components/repoTile';
-
+import repoTile from "@components/repoTile";
+import { BrowserRouter,Route, Redirect } from "react-router-dom";
 import './App.css';
 import ReposSearchPage from './pages';
 
 const App = () => {
   return (
-  
-      <ReposSearchPage/>
+    <BrowserRouter>
+      <Route path="/repos" component={ReposSearchPage} />
+      <Route path="/repos/:id" component={repoTile}/>
+      <Redirect to = "/repos" />
+      
+    </BrowserRouter>
+    
   
   );
 }
