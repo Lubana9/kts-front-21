@@ -1,13 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
 import RepoTile from "@components/repoTile";
 import "./style.css";
 import SearchIcon from "@components/searchIcon";
-import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import { repoData } from "@components/repoTile/types";
+
+ const repoContext = createContext({
+  repos: []
+ });
+const Provider = repoContext.Provider;
+export const useReposContext = () => useContext(repoContext);
+
+type ReposContext = { list: repoData[]; isLoading: boolean; load: () => void; }
 
 const ReposSearchPage: React.FC = () => {
   const [repos, setRepos] = useState([]);
   const [allRepos, setAllRepos] = useState([]);
+  
 
 
   useEffect(() => {
@@ -52,11 +61,13 @@ const ReposSearchPage: React.FC = () => {
           <button className="btn-search" type='submit'  >  <SearchIcon /></button>
         </div>
       </div>
-      <div className="grid grid--1x3">
-               {repos.map((user:any) => {
-                 return <Link className="card-link_txt" to={`/repos/${user.id}`}> <RepoTile userData={user} key= {user.id}  /> </Link>
-  })
-  }</div>
+      <Provider value={{repos}}>
+        <div className="grid grid--1x3">
+                 {repos.map((user:any) => {
+                   return <Link className="card-link_txt" to={`/repos/${user.id}`}> <RepoTile repos={user} key= {user.id}  /> </Link>
+          })
+          }</div>
+      </Provider>
     </>
   );
 };

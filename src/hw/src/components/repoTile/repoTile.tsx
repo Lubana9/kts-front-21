@@ -1,36 +1,35 @@
-import React, { useState } from "react";
-
+import React, { useState, useContext } from "react";
 import Avatar from "@components/avatar/avatar";
-import { RepoItem } from "@store/GitHubStore/types";
 import "./style.css";
 import StarIcon from "@components/starIcon/index";
-import GitHubStore from "@store/GitHubStore";
-
+import { useReposContext } from "@pages/reposSearchPage";
+import { repoData } from "./types";
+import { useParams } from "react-router";
 export type RepoTileProps = {
-  item?: RepoItem;
-  userData: any;
+  repos: repoData
 };
-const RepoTile: React.FC<RepoTileProps> = ({userData}) => {
- 
+const RepoTile: React.FC<RepoTileProps> = ({repos}) => {
+  const repoContext = useReposContext();
+
   return (
 
 
       <>
       <div  className="card card-primary">
-        <Avatar letter={userData.name[0]} img={userData.avatar_url} />
+        <Avatar letter={repos.name[0]} img={repos.avatar_url} />
         <div className="card-body">
-          <h4 className="card-heading">{userData.name}</h4>
+          <h4 className="card-heading">{repos.name}</h4>
           <div className="card-link">
             {" "}
             <a className="card-link_txt " href= ''>
-            {userData.owner.login}
+            {repos.owner.login}
             </a>
           </div>
           <div className="card-content ">
             <StarIcon />
             <span className="card-content_txt">
               
-              {userData.stargazers_count }&ensp; {userData.updated_at}
+              {repos.stargazers_count }&ensp; {repos.updated_at}
             </span>
           </div>
         </div>
