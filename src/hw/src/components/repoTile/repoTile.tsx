@@ -5,8 +5,10 @@ import StarIcon from "@components/starIcon/index";
 import { useReposContext } from "@pages/reposSearchPage";
 import { repoData } from "./types";
 import { useParams } from "react-router";
+import { RepoItem } from "@store/GitHubStore/types";
 export type RepoTileProps = {
-  repos: repoData
+  repos: repoData,
+  
 };
 const RepoTile: React.FC<RepoTileProps> = ({repos}) => {
   const repoContext = useReposContext();
