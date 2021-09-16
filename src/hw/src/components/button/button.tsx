@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 import SearchIcon from "@components/searchIcon";
 import "./style.css";
-type btnProps = {
+type BtnProps = {
   onBtn: (value: MouseEvent) => any;
  }
-const Button: React.FC<btnProps> = () => {
+const Button: React.FC<BtnProps> = () => {
 
 
   return (

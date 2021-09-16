@@ -1,17 +1,19 @@
 import React from "react";
+
 import "./style.css";
+import logo from './img/logo.png'
  type AvatarProps ={
     letter: string;
     img?: string;
 }
 const Avatar: React.FC<AvatarProps> = ({letter}) => {
-    const image = process.env.PUBLIC_URL + '/img/logo.png';
+
 
         
     return (
-        <div className="icon-container icon_content_txt icon-accent">
+        <div className="icon-container icon_content_txt ">
 
-       <img className="icon-content_img" src={image} alt={letter}>          
+       <img className="icon-content_img" src={logo} alt={letter}>          
               </img>
         </div>
      
