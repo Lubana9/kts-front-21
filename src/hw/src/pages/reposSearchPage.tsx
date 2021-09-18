@@ -2,8 +2,11 @@ import React, { useEffect, useState, createContext, useContext } from "react";
 import RepoTile from "@components/repoTile";
 import "./style.css";
 import SearchIcon from "@components/searchIcon";
-import { Link, useParams } from "react-router-dom";
-import { repoData } from "@components/repoTile/types";
+import { Link} from "react-router-dom";
+import { RepoData } from "@components/repoTile/types";
+import axios from "axios";
+
+
 
  const repoContext = createContext({
   repos: []
@@ -11,13 +14,12 @@ import { repoData } from "@components/repoTile/types";
 const Provider = repoContext.Provider;
 export const useReposContext = () => useContext(repoContext);
 
-type ReposContext = { list: repoData[]; isLoading: boolean; load: () => void; }
+type ReposContext = { list: RepoData[]; isLoading: boolean; load: () => void; }
 
 const ReposSearchPage: React.FC = () => {
   const [repos, setRepos] = useState([]);
   const [allRepos, setAllRepos] = useState([]);
-  
-
+  const [branches, setBranches] = useState({});
 
   useEffect(() => {
     (
@@ -38,7 +40,7 @@ const ReposSearchPage: React.FC = () => {
       }
     )();
   }, []);
-  const handelFilter = (e: React.FormEvent<HTMLInputElement>) => {
+  const searchRepos = (e: React.FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value.toLowerCase();
     const filteredUsers = allRepos.filter((user:any) => (`${user.name}`
       .toLowerCase()
@@ -47,26 +49,43 @@ const ReposSearchPage: React.FC = () => {
     setRepos(filteredUsers);
   }
 
+    const getBranches = (reponame:any) => {
+ 
+    let dat = axios
+      .get(`https://api.github.com/repos/ktsstudio/${reponame}/branches`)
+      .then(res => {
+        setBranches(res.data);
+      })
+      console.log('data:', dat);
+   }
 
-        
   return (
     <>
       <div className="grid grid-1x2">
-        <div className="input-group">
+        <form className="input-group">
           <input type="text"
             className="input input-group_input"
             placeholder="Введите название организации"
-            onChange={handelFilter}
+            onChange={searchRepos}
           />
-          <button className="btn-search" type='submit'  >  <SearchIcon /></button>
-        </div>
+          <button className="btn-search" >
+            <SearchIcon /></button>
+        </form>
       </div>
       <Provider value={{repos}}>
         <div className="grid grid--1x3">
-                 {repos.map((user:any) => {
-                   return <Link className="card-link_txt" to={`/repos/${user.id}`}> <RepoTile repos={user} key= {user.id}  /> </Link>
-          })
-          }</div>
+                 {repos.map((user:RepoData) => {
+                   return <Link className="card-link_txt" to={`/repos/${user.name}`}  key={user.id} >
+                     <RepoTile onClick={() => getBranches(user.name)} repos={user} />
+        
+                   </Link>
+                    
+                 })
+          }
+       
+        </div>
+      
+
       </Provider>
     </>
   );

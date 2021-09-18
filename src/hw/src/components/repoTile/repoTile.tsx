@@ -1,22 +1,22 @@
-import React, { useState, useContext } from "react";
-import Avatar from "@components/avatar/avatar";
+import React from "react";
+import Avatar from "@components/avatar";
 import "./style.css";
 import StarIcon from "@components/starIcon/index";
-import { useReposContext } from "@pages/reposSearchPage";
-import { repoData } from "./types";
-import { useParams } from "react-router";
-import { RepoItem } from "@store/GitHubStore/types";
+
+import { RepoData } from "./types";
+
 export type RepoTileProps = {
-  repos: repoData,
+  repos: RepoData,
+  onClick: React.MouseEventHandler
   
 };
-const RepoTile: React.FC<RepoTileProps> = ({repos}) => {
-  const repoContext = useReposContext();
+const RepoTile: React.FC<RepoTileProps> = ({repos, onClick}) => {
+
 
   return (
 
 
-      <>
+   
       <div  className="card card-primary">
         <Avatar letter={repos.name[0]} img={repos.avatar_url} />
         <div className="card-body">
@@ -36,7 +36,7 @@ const RepoTile: React.FC<RepoTileProps> = ({repos}) => {
           </div>
         </div>
       </div>
-    </>
+  
   );
 };
 

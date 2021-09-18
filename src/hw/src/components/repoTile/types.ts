@@ -1,11 +1,12 @@
-export type repoData = {
+export type RepoData = {
     name: Array<string>,
     avatar_url: string,
-    owner: repoOwner,
+    owner: RepoOwner,
     stargazers_count: number,
-    updated_at:string
+    updated_at: string
+    id:number
 }
 
-export type repoOwner = {
+export type RepoOwner = {
     login: string,
 }

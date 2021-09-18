@@ -1,13 +1,58 @@
-import { RepoItem } from "@store/GitHubStore/types";
+ import { RepoData } from "@components/repoTile/types";
+// import React, { useEffect, useState } from 'react';
+// import ReactDOM from 'react-dom';
+// import 'antd/dist/antd.css';
 
-export type RepoBranchesDrawerProps= {
-    selectedRepo: RepoItem | null,
-    onClose: () => void
-}
- 
-const RepoBranchesDrawer:React.FC<RepoBranchesDrawerProps> = ({selectedRepo,onClose}) => {
-    return (<div></div>  );
-}
- 
-export default RepoBranchesDrawer;
+// import { Drawer, Button } from 'antd';
+
+
+
+
+// const RepoBranchesDrawer:React.FC = () => {
+//   const [visible, setVisible] = useState(false);
+//   const [allRepos, setAllRepos] = useState([]);
+//   const [repos, setRepos] = useState([]);
+//   const [branches, setBranches] = useState({});
+//   const [detailisLoading, setDetailisLoading] = useState(false);
+//   useEffect(() => {
+//     (
+//       async () => {
+//         let userData;
+//         try {
+//           const response = await fetch('https://api.github.com/repos/ktsstudio/tornkts/branches');
+//           const userData: [] = await response.json();
+//           setAllRepos(userData);
+//           setRepos(userData);
+//         }
+//         catch (e) {
+//           console.log(e);
+//           userData = [];
+  
+//         }
+        
+//       }
+//     )();
+//   }, []);
+//   const showDrawer = () => {
+//     setVisible(true);
+//   };
+
+//     onclose = () => {
+//     setVisible(false);
+//   };
+
+//   return (
+//     <>
+//       <button  onClick={showDrawer}>
+//         Open
+//       </button>
+//       <Drawer title="list" placement="right" onClose={onclose} visible={visible}>
+//               <div>sdsd</div>
+//               <div>sdsdsd</div>
+//       </Drawer>
+//     </>
+//   );
+// };
+
+// export default RepoBranchesDrawer;
 

@@ -1,6 +1,6 @@
+
 import repoTile from "@components/repoTile";
 import { BrowserRouter,Route, Redirect } from "react-router-dom";
-import './App.css';
 import ReposSearchPage from './pages';
 
 const routes = [
@@ -16,7 +16,9 @@ const routes = [
 ]
 const App = () => {
   return (
+
     <BrowserRouter>
+ 
       {routes.map((route) => (
         <Route path={route.path} component={route.component}>
         </Route>
