@@ -1,0 +1,43 @@
+@import "@styles/style.css";
+
+.card {
+  display: flex;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-Border);
+  padding: 10px;
+}
+.card:hover {
+  cursor: pointer;
+}
+.card-primary {
+  background: var(--color-background);
+}
+.card-body {
+  color: var(--color-Hint);
+  margin: 0 10px;
+}
+.card-heading {
+  margin: 5px 0 0 0;
+  padding: 5px 0;
+  color: var(--color-default);
+  white-space: nowrap;
+  width: 50%;
+  font-weight: bold;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-link {
+  margin-bottom: 5px;
+}
+.card-link_txt {
+  text-decoration: none;
+}
+
+.card-link_txt:hover {
+  color: var(--color-linkHover);
+}
+
+.card-content_txt {
+  vertical-align: bottom;
+}

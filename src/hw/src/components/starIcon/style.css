@@ -1,0 +1,7 @@
+@import "@styles/style.css";
+
+.card-content_icon {
+  width: 13px;
+  height: 13px;
+  fill: var(--color-starAccent);
+}

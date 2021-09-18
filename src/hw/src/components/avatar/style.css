@@ -1,0 +1,26 @@
+@import "@styles/style.css";
+
+.icon-content_img {
+  width: 100%;
+  clip-path: circle(50% at 50% 50%);
+}
+
+.icon-container {
+  align-items: center;
+  border-radius: 50%;
+  display: inline-flex;
+  height: 80px;
+  justify-content: center;
+  width: 80px;
+}
+
+.icon_content_txt {
+  font-size: 40px;
+  color: var(--color-background);
+  font-weight: 700;
+  text-align: center;
+}
+
+.icon-accent {
+  background: var(--color-accent);
+}
