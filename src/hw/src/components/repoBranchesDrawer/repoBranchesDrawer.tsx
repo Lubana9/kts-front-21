@@ -14,25 +14,7 @@
 //   const [repos, setRepos] = useState([]);
 //   const [branches, setBranches] = useState({});
 //   const [detailisLoading, setDetailisLoading] = useState(false);
-//   useEffect(() => {
-//     (
-//       async () => {
-//         let userData;
-//         try {
-//           const response = await fetch('https://api.github.com/repos/ktsstudio/tornkts/branches');
-//           const userData: [] = await response.json();
-//           setAllRepos(userData);
-//           setRepos(userData);
-//         }
-//         catch (e) {
-//           console.log(e);
-//           userData = [];
-  
-//         }
-        
-//       }
-//     )();
-//   }, []);
+
 //   const showDrawer = () => {
 //     setVisible(true);
 //   };

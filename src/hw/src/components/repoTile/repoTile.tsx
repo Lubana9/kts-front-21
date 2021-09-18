@@ -7,7 +7,7 @@ import { RepoData } from "./types";
 
 export type RepoTileProps = {
   repos: RepoData,
-  onClick: React.MouseEventHandler
+  onClick?: React.MouseEventHandler
   
 };
 const RepoTile: React.FC<RepoTileProps> = ({repos, onClick}) => {

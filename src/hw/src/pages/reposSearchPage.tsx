@@ -5,6 +5,8 @@ import SearchIcon from "@components/searchIcon";
 import { Link} from "react-router-dom";
 import { RepoData } from "@components/repoTile/types";
 import axios from "axios";
+import PopUp from "@components/Popup";
+import CardPopUp from "@components/CardPopUp";
 
 
 
@@ -20,6 +22,7 @@ const ReposSearchPage: React.FC = () => {
   const [repos, setRepos] = useState([]);
   const [allRepos, setAllRepos] = useState([]);
   const [branches, setBranches] = useState({});
+ 
 
   useEffect(() => {
     (
@@ -57,7 +60,8 @@ const ReposSearchPage: React.FC = () => {
         setBranches(res.data);
       })
       console.log('data:', dat);
-   }
+    }
+  
 
   return (
     <>
@@ -75,13 +79,13 @@ const ReposSearchPage: React.FC = () => {
       <Provider value={{repos}}>
         <div className="grid grid--1x3">
                  {repos.map((user:RepoData) => {
-                   return <Link className="card-link_txt" to={`/repos/${user.name}`}  key={user.id} >
-                     <RepoTile onClick={() => getBranches(user.name)} repos={user} />
-        
-                   </Link>
-                    
+                   return <Link className="card-link_txt" to={`/repos/${user.name}`} onClick={getBranches}  key={user.id} >
+                     <RepoTile repos={user} />
+                     
+                            </Link>
                  })
           }
+
        
         </div>
       
