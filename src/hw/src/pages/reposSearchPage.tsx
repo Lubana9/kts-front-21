@@ -7,6 +7,7 @@ import { RepoData } from "@components/repoTile/types";
 import axios from "axios";
 import PopUp from "@components/Popup";
 import CardPopUp from "@components/CardPopUp";
+import { routes } from "@config/configs";
 
 
 
@@ -79,7 +80,7 @@ const ReposSearchPage: React.FC = () => {
       <Provider value={{repos}}>
         <div className="grid grid--1x3">
                  {repos.map((user:RepoData) => {
-                   return <Link className="card-link_txt" to={`/repos/${user.name}`} onClick={getBranches}  key={user.id} >
+                   return <Link className="card-link_txt" to={routes.reposDetails.create(`${user.id}`)} onClick={getBranches}  key={user.id} >
                      <RepoTile repos={user} />
                      
                             </Link>

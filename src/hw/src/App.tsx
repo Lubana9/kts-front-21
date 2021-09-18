@@ -1,29 +1,19 @@
 
-import repoTile from "@components/repoTile";
+import RepoBranchesDrawer from "@components/repoBranchesDrawer/repoBranchesDrawer";
+import RepoTile from "@components/repoTile";
+import { routes } from "@config/configs";
 import { BrowserRouter,Route, Redirect } from "react-router-dom";
 import ReposSearchPage from './pages';
 
-const routes = [
-  {
-    path: "/repos",
-    component: ReposSearchPage
-  },
-  {
-    path: "/repos/:id",
-    create: (id: string): string => `/repos/${id}`,
-    component: repoTile
-  }
-]
+
 const App = () => {
   return (
 
     <BrowserRouter>
  
-      {routes.map((route) => (
-        <Route path={route.path} component={route.component}>
-        </Route>
-      ))}
-      <Redirect to = "/repos" />
+        
+      <Route path={routes.reposDetails.mask} component={ReposSearchPage} />
+      <Redirect to = {routes.reposDetails.mask} />
       
     </BrowserRouter>
     
