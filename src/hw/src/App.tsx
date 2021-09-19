@@ -1,6 +1,3 @@
-
-import RepoBranchesDrawer from "@components/repoBranchesDrawer/repoBranchesDrawer";
-import RepoTile from "@components/repoTile";
 import { routes } from "@config/configs";
 import { BrowserRouter,Route, Redirect } from "react-router-dom";
 import ReposSearchPage from './pages';
