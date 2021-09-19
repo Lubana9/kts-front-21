@@ -1,7 +1,5 @@
 const CardPopUp = () => {
-    return (
-        <div>information</div>
-    );
-}
+  return <div>information</div>;
+};
 
 export default CardPopUp;

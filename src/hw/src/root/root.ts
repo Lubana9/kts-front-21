@@ -11,6 +11,7 @@ export const OrgName = () => {
     })
     .then((result: ApiResponse<RepoItem[], any>) => {
       if (result.success) {
+        // eslint-disable-next-line no-console
         console.log(result.data.map((rep) => rep.name));
       }
     });
