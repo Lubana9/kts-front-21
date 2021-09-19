@@ -5,11 +5,9 @@ import SearchIcon from "@components/searchIcon";
 import { Link} from "react-router-dom";
 import { RepoData } from "@components/repoTile/types";
 import axios from "axios";
-import PopUp from "@components/Popup";
-import CardPopUp from "@components/CardPopUp";
 import { routes } from "@config/configs";
-
-
+import 'antd/dist/antd.css';
+import { Drawer} from 'antd';
 
  const repoContext = createContext({
   repos: []
@@ -22,8 +20,8 @@ type ReposContext = { list: RepoData[]; isLoading: boolean; load: () => void; }
 const ReposSearchPage: React.FC = () => {
   const [repos, setRepos] = useState([]);
   const [allRepos, setAllRepos] = useState([]);
-  const [branches, setBranches] = useState({});
- 
+  const [details, setDetails] = useState([]);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     (
@@ -53,15 +51,23 @@ const ReposSearchPage: React.FC = () => {
     setRepos(filteredUsers);
   }
 
-    const getBranches = (reponame:any) => {
+  const getDetails = (reponame: string) => {
  
-    let dat = axios
-      .get(`https://api.github.com/repos/ktsstudio/${reponame}/branches`)
+    axios
+    .get(`https://api.github.com/repos/ktsstudio/${reponame}/branches`)
       .then(res => {
-        setBranches(res.data);
+        setDetails(res.data);
       })
-      console.log('data:', dat);
-    }
+    
+  }
+
+  const showDrawer = () => {
+    setVisible(true);
+  };
+
+  const onClose = () => {
+    setVisible(false);
+  };
   
 
   return (
@@ -78,16 +84,30 @@ const ReposSearchPage: React.FC = () => {
         </form>
       </div>
       <Provider value={{repos}}>
-        <div className="grid grid--1x3">
+        <div className="grid grid--1x3" onClick={showDrawer}>
                  {repos.map((user:RepoData) => {
-                   return <Link className="card-link_txt" to={routes.reposDetails.create(`${user.id}`)} onClick={getBranches}  key={user.id} >
+                   return <Link className="card-link_txt"
+                     to={routes.reposDetails.create(`${user.id}`)}
+                     onClick={() => getDetails(`${user.name}`)} key={user.id} >
+  
                      <RepoTile repos={user} />
-                     
+
                             </Link>
                  })
-          }
+                              
 
-       
+        
+          }
+ 
+ <Drawer title="information" placement="right"
+          onClose={onClose} visible={visible}>
+            {details.map((branches: any) => {
+              return (
+
+                  <div key={branches.sha}>branches: <br/> {branches.name} </div>
+              );
+            })}
+        </Drawer>
         </div>
       
 

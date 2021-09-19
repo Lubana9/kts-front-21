@@ -1,5 +1,5 @@
 export type RepoData = {
-    name: Array<string>,
+  name: Array<string>,
     avatar_url: string,
     owner: RepoOwner,
     stargazers_count: number,
