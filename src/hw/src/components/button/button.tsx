@@ -2,10 +2,15 @@ import React, { Children } from "react";
 
 import "./style.css";
 type BtnProps = {
-  onBtn: (value: MouseEvent) => any;
+  onClick?: (e: React.MouseEvent) => void;
+  children: React.ReactNode;
 };
-const Button: React.FC<BtnProps> = () => {
-  return <button className="btn-search">{Children}</button>;
+const Button: React.FC<BtnProps> = ({ onClick, children }) => {
+  return (
+    <button onClick={onClick} className="btn-search">
+      {children}
+    </button>
+  );
 };
 
 export default Button;
