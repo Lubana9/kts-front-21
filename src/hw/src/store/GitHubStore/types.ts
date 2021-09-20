@@ -1,25 +1,26 @@
-
-import { ApiResponse } from "../../shared/store/ApiStore/types"
+import { ApiResponse } from "../../shared/store/ApiStore/types";
 
 export type GetOrganizationReposListParams = {
-    organizaionName: string;
-}
+  organizaionName: string;
+};
 
 export type GitHubRepoOwner = {
-    id: number,
-    url: string,
-    avatar_url: string,
-    login: string
-}
+  id: number;
+  url: string;
+  avatar_url: string;
+  login: string;
+};
 
 export type RepoItem = {
-    id?: number,
-    url?: string,
-    name?: string,
-    stargazers_count?: number,
-    owner?: GitHubRepoOwner
-}
+  id?: number;
+  url?: string;
+  name?: string;
+  stargazers_count?: number;
+  owner?: GitHubRepoOwner;
+};
 
- export interface IGitHubStore {
-    getOrganizationReposList(params: GetOrganizationReposListParams): Promise<ApiResponse<RepoItem[],any>>;
+export interface IGitHubStore {
+  getOrganizationReposList(
+    params: GetOrganizationReposListParams
+  ): Promise<ApiResponse<RepoItem[], any>>;
 }

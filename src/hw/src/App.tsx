@@ -1,17 +1,15 @@
+import { routes } from "@config/configs";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
-import Avatar from '@components/avatar';
-import Button from '@components/button';
-import RepoTile from '@components/repoTile';
-
-import './App.css';
-import ReposSearchPage from './pages';
+import ReposSearchPage from "./pages";
 
 const App = () => {
   return (
-  
-      <ReposSearchPage/>
-  
+    <BrowserRouter>
+      <Route path={routes.reposDetails.mask} component={ReposSearchPage} />
+      <Redirect to={routes.reposDetails.mask} />
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

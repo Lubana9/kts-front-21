@@ -1,67 +1,121 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
+
+import Button from "@components/button";
 import RepoTile from "@components/repoTile";
 import "./style.css";
+import { RepoData } from "@components/repoTile/types";
 import SearchIcon from "@components/searchIcon";
+import { routes } from "@config/configs";
+import "antd/dist/antd.css";
+import { Drawer } from "antd";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
+const repoContext = createContext({
+  repos: [],
+});
+const Provider = repoContext.Provider;
+export const useReposContext = () => useContext(repoContext);
+
+type ReposContext = { list: RepoData[]; isLoading: boolean; load: () => void };
 
 const ReposSearchPage: React.FC = () => {
   const [repos, setRepos] = useState([]);
   const [allRepos, setAllRepos] = useState([]);
+  const [details, setDetails] = useState([]);
+  const [visible, setVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    (
-      async () => {
-        let userData;
-        try {
-          const response = await fetch('https://api.github.com/orgs/ktsstudio/repos');
-          const userData: [] = await response.json();
-          setAllRepos(userData);
-          setRepos(userData);
-        }
-        catch (e) {
-          console.log(e);
-          userData = [];
-  
-        }
-        
-      }
-    )();
+    const getRepos = () => {
+      setIsLoading(true);
+      axios.get("https://api.github.com/orgs/ktsstudio/repos").then((res) => {
+        setIsLoading(false);
+        setRepos(res.data);
+        setAllRepos(res.data);
+      });
+    };
+    getRepos();
   }, []);
-  const handelFilter = (e: React.FormEvent<HTMLInputElement>) => {
+  const searchRepos = (e: React.FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value.toLowerCase();
-    const filteredUsers = allRepos.filter((user:any) => (`${user.name}`
-      .toLowerCase()
-      .includes(value)
-    ));
+    const filteredUsers = allRepos.filter((user: any) =>
+      `${user.name}`.toLowerCase().includes(value)
+    );
     setRepos(filteredUsers);
-  }
+  };
 
+  const getDetails = (reponame: string) => {
+    setIsLoading(true);
+    axios
+      .get(`https://api.github.com/repos/ktsstudio/${reponame}/branches`)
+      .then((res) => {
+        setIsLoading(false);
+        setDetails(res.data);
+      });
+  };
 
-        
+  const showDrawer = () => {
+    setVisible(true);
+  };
+
+  const onClose = () => {
+    setVisible(false);
+  };
+
   return (
     <>
-      <div className="grid grid--1x2">
-        <div className='input-group'>
-          <input type="text"
+      <div className="grid grid-1x2">
+        <form className="input-group">
+          <input
+            type="text"
             className="input input-group_input"
             placeholder="Введите название организации"
-            onChange={handelFilter}
+            onChange={searchRepos}
           />
-          <button className="btn-search" type='submit'  >
-          <SearchIcon />
-          </button>
+          <Button onClick={() => searchRepos}>
+            <SearchIcon />
+          </Button>
+        </form>
+      </div>
+      <Provider value={{ repos }}>
+        <div>
+          <div className="grid grid--1x3" onClick={showDrawer}>
+            {repos.map((user: RepoData) => {
+              return (
+                <Link
+                  className="card-link_txt"
+                  to={routes.reposDetails.create(`${user.id}`)}
+                  onClick={() => getDetails(`${user.name}`)}
+                  key={user.id}
+                >
+                  <RepoTile repos={user} />
+                </Link>
+              );
+            })}
+          </div>
+          <div>
+            <Drawer
+              title="information"
+              placement="right"
+              onClose={onClose}
+              visible={visible}
+            >
+              {details.map((branches: any) => {
+                return (
+                  <div key={branches.sha}>
+                    <div>
+                      branches: <br /> {branches.name}
+                    </div>
+                  </div>
+                );
+              })}
+            </Drawer>
+          </div>
         </div>
-      </div>
-
-      <div className= "grid grid--1x3">
-  {repos.map((user:any, id:number) => {
-       return  <RepoTile userData={user} key= {id}  />
-  })
-        }
-      </div>
+      </Provider>
     </>
   );
 };
-
 
 export default ReposSearchPage;

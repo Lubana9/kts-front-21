@@ -11,6 +11,7 @@
 
 .input-group {
   display: flex;
+  margin-bottom: 20px;
 }
 .input-group_input {
   flex-grow: 1;
@@ -60,9 +61,11 @@
 .grid--1x3 {
   gap: 15px;
 }
+.link {
+}
 @media screen and (min-width: 768px) {
   .grid--1x3 {
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    gap: 20px;
   }
 }

@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React, { Children } from "react";
 
-import SearchIcon from "@components/searchIcon";
 import "./style.css";
-type btnProps = {
-  onBtn: (value: MouseEvent) => any;
- }
-const Button: React.FC<btnProps> = () => {
-
-
+type BtnProps = {
+  onClick?: (e: React.MouseEvent) => void;
+  children: React.ReactNode;
+};
+const Button: React.FC<BtnProps> = ({ onClick, children }) => {
   return (
-    <button className="btn-search" >
-      <SearchIcon />
+    <button onClick={onClick} className="btn-search">
+      {children}
     </button>
   );
 };
