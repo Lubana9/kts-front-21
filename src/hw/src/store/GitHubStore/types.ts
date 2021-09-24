@@ -12,15 +12,16 @@ export type GitHubRepoOwner = {
 };
 
 export type RepoItem = {
-  id?: number;
-  url?: string;
-  name?: string;
-  stargazers_count?: number;
-  owner?: GitHubRepoOwner;
+  id: number;
+  url: string;
+  name: string;
+  stargazers_count: number;
+  updated_at: string;
+  owner: GitHubRepoOwner;
 };
 
 export interface IGitHubStore {
   getOrganizationReposList(
     params: GetOrganizationReposListParams
-  ): Promise<ApiResponse<RepoItem[], any>>;
+  ): Promise<void>;
 }
