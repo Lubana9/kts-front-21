@@ -1,5 +1,3 @@
-import { ApiResponse } from "../../shared/store/ApiStore/types";
-
 export type GetOrganizationReposListParams = {
   organizaionName: string;
 };

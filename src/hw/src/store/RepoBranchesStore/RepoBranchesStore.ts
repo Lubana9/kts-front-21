@@ -1,6 +1,10 @@
 import ApiStore from "@store/ApiStore";
 import { HTTPMethod } from "@store/ApiStore/types";
 import {
+  GetOrganizationReposListParams,
+  IGitHubStore,
+} from "@store/GitHubStore/types";
+import {
   normalaizRepoBranches,
   RepoBranchesApi,
   RepoBranchesModel,
@@ -20,8 +24,6 @@ import {
   observable,
   runInAction,
 } from "mobx";
-
-import { GetOrganizationReposListParams, IGitHubStore } from "./types";
 
 const BASE_URL = "https://api.github.com";
 type PrivateFilds = "_branches" | "_meta";
