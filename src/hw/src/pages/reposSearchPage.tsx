@@ -7,12 +7,11 @@ import { RepoData } from "@components/repoTile/types";
 import SearchIcon from "@components/searchIcon";
 import { routes } from "@config/configs";
 import "antd/dist/antd.css";
-import GitHubStore from "@store/GitHubStore";
-import { RepoItem } from "@store/GitHubStore/types";
+import ReposListStore from "@store/GitHubStore";
 import RepoBranchesStore from "@store/RepoBranchesStore";
 import { Meta } from "@utils/Meta";
 import { UseLocalStore } from "@utils/UseLocalStore";
-import { Drawer, Space, Spin } from "antd";
+import { Drawer } from "antd";
 import axios from "axios";
 import { observer, useLocalStore } from "mobx-react-lite";
 import { Link } from "react-router-dom";
@@ -27,8 +26,8 @@ type ReposContext = { list: RepoData[]; isLoading: boolean; load: () => void };
 const ReposSearchPage: React.FC = () => {
   const [details, setDetails] = useState([]);
   const [visible, setVisible] = useState(false);
-  const [list, setList] = useState<RepoItem[]>([]);
-  const githubStore = useLocalStore(() => new GitHubStore());
+  const [list, setList] = useState([]);
+  const githubStore = useLocalStore(() => new ReposListStore());
   const repoBranchStore = UseLocalStore(() => new RepoBranchesStore());
 
   // eslint-disable-next-line no-console
@@ -44,7 +43,7 @@ const ReposSearchPage: React.FC = () => {
     const filteredUsers = githubStore.list.filter((user: any) =>
       `${user.name}`.toLowerCase().includes(value)
     );
-    setList(filteredUsers);
+    githubStore.setList(filteredUsers);
   };
 
   const getDetails = (reponame: string) => {

@@ -22,7 +22,7 @@ import {
 } from "mobx";
 
 import ApiStore from "../ApiStore";
-import { ApiResponse, HTTPMethod } from "../ApiStore/types";
+import { HTTPMethod } from "../ApiStore/types";
 import { GetOrganizationReposListParams, IGitHubStore } from "./types";
 const baseUrl = " https://api.github.com";
 

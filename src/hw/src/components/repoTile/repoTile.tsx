@@ -3,10 +3,10 @@ import React from "react";
 import Avatar from "@components/avatar";
 import "./style.css";
 import StarIcon from "@components/starIcon/index";
-import { RepoItem } from "@store/GitHubStore/types";
+import { RepoItemModel } from "@store/modules/github";
 
 export type RepoTileProps = {
-  repos: RepoItem;
+  repos: RepoItemModel;
   onClick?: React.MouseEventHandler;
 };
 const RepoTile: React.FC<RepoTileProps> = ({ repos, onClick }) => {
@@ -24,7 +24,7 @@ const RepoTile: React.FC<RepoTileProps> = ({ repos, onClick }) => {
         <div className="card-content ">
           <StarIcon />
           <span className="card-content_txt">
-            {repos.stargazers_count}&ensp; {repos.updated_at}
+            {repos.stargazersCount}&ensp; {repos.pushedAt}
           </span>
         </div>
       </div>
