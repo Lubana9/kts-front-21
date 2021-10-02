@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 export interface ILocalStore {
   destroy: () => void;
 }
-export const UseLocalStore = <T extends ILocalStore>(Creator: () => T): T => {
+export const useLocalStore = <T extends ILocalStore>(Creator: () => T): T => {
   const container = useRef<T | null>(null);
   if (container.current === null) {
     container.current = Creator();

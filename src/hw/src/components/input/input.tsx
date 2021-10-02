@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-import "./style.css";
+import "./style.scss";
 
 export type inputProps = {
   value: string;

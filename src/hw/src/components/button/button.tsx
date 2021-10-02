@@ -1,6 +1,6 @@
 import React, { Children } from "react";
 
-import "./style.css";
+import "./style.scss";
 type BtnProps = {
   onClick?: (e: React.MouseEvent) => void;
   children: React.ReactNode;

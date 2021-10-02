@@ -2,7 +2,7 @@ import React, { useEffect, useState, createContext, useContext } from "react";
 
 import Button from "@components/button";
 import RepoTile from "@components/repoTile";
-import "./style.css";
+import "./style.scss";
 import { RepoData } from "@components/repoTile/types";
 import SearchIcon from "@components/searchIcon";
 import { routes } from "@config/configs";
@@ -10,10 +10,10 @@ import "antd/dist/antd.css";
 import ReposListStore from "@store/GitHubStore";
 import RepoBranchesStore from "@store/RepoBranchesStore";
 import { Meta } from "@utils/Meta";
-import { UseLocalStore } from "@utils/UseLocalStore";
+import { useLocalStore } from "@utils/UseLocalStore";
 import { Drawer } from "antd";
 import axios from "axios";
-import { observer, useLocalStore } from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 const repoContext = createContext({
   repos: [],
@@ -28,7 +28,7 @@ const ReposSearchPage: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const [list, setList] = useState([]);
   const githubStore = useLocalStore(() => new ReposListStore());
-  const repoBranchStore = UseLocalStore(() => new RepoBranchesStore());
+  const repoBranchStore = useLocalStore(() => new RepoBranchesStore());
 
   // eslint-disable-next-line no-console
   console.log("is rendred");

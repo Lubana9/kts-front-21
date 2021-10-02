@@ -1,7 +1,7 @@
 import React from "react";
 
 import Avatar from "@components/avatar";
-import "./style.css";
+import "./style.scss";
 import StarIcon from "@components/starIcon/index";
 import { RepoItemModel } from "@store/modules/github";
 
