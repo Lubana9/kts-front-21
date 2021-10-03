@@ -1,18 +1,19 @@
-import React from "react";
-import { useState } from "react";
+import React, { useCallback } from "react";
 
 import "./style.scss";
 
 export type inputProps = {
   value: string;
   onChange: (value: string) => void;
+  placeholder?: string;
 };
-const Input: React.FC<inputProps> = () => {
-  const [value, onChange] = useState<string>("");
-
-  const handelChange = (e: React.FormEvent<HTMLInputElement>) => {
-    onChange(e.currentTarget.value);
-  };
+const Input: React.FC<inputProps> = ({ value, onChange, placeholder }) => {
+  const handelChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      onChange(e.target.value);
+    },
+    [onChange]
+  );
 
   return (
     <input

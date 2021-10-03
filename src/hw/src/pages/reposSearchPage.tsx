@@ -1,6 +1,13 @@
-import React, { useEffect, useState, createContext, useContext } from "react";
+import React, {
+  useEffect,
+  useState,
+  createContext,
+  useContext,
+  useMemo,
+} from "react";
 
 import Button from "@components/button";
+import Input from "@components/input";
 import RepoTile from "@components/repoTile";
 import "./style.scss";
 import { RepoData } from "@components/repoTile/types";
@@ -26,25 +33,15 @@ type ReposContext = { list: RepoData[]; isLoading: boolean; load: () => void };
 const ReposSearchPage: React.FC = () => {
   const [details, setDetails] = useState([]);
   const [visible, setVisible] = useState(false);
-  const [list, setList] = useState([]);
+  const [list, setList] = useState("");
   const githubStore = useLocalStore(() => new ReposListStore());
   const repoBranchStore = useLocalStore(() => new RepoBranchesStore());
 
-  // eslint-disable-next-line no-console
-  console.log("is rendred");
   useEffect(() => {
     githubStore.getOrganizationReposList({
       organizaionName: "ktsstudio",
     });
   }, [githubStore]);
-
-  const searchRepos = (e: React.FormEvent<HTMLInputElement>) => {
-    const value = e.currentTarget.value.toLowerCase();
-    const filteredUsers = githubStore.list.filter((user: any) =>
-      `${user.name}`.toLowerCase().includes(value)
-    );
-    githubStore.setList(filteredUsers);
-  };
 
   const getDetails = (reponame: string) => {
     axios
@@ -62,17 +59,25 @@ const ReposSearchPage: React.FC = () => {
     setVisible(false);
   };
 
+  const handelSearch = useMemo(() => {
+    return (value: string) => {
+      githubStore.setValue(value);
+    };
+  }, [githubStore]);
+
   return (
     <>
       <div className="grid grid-1x2">
         <form className="input-group">
-          <input
-            type="text"
-            className="input input-group_input"
-            placeholder="Введите название организации"
-            onChange={searchRepos}
-          />
-          <Button onClick={() => searchRepos}>
+          <Input value={githubStore.value} onChange={handelSearch} />
+          <Button
+            isLoading={githubStore.meta}
+            onClick={() => {
+              githubStore.getOrganizationReposList({
+                organizaionName: githubStore.value,
+              });
+            }}
+          >
             <SearchIcon />
           </Button>
         </form>

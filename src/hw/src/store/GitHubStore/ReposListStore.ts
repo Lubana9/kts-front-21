@@ -26,20 +26,22 @@ import { HTTPMethod } from "../ApiStore/types";
 import { GetOrganizationReposListParams, IGitHubStore } from "./types";
 const baseUrl = " https://api.github.com";
 
-type PrivateFilds = "_list" | "_meta";
+type PrivateFilds = "_list" | "_meta" | "_value";
 export default class ReposListStore implements IGitHubStore, ILocalStore {
   private readonly apiStore = new ApiStore(baseUrl);
   private _list: CollectionModel<number, RepoItemModel> =
     getIniitCollectionModels();
   private _meta: Meta = Meta.initial;
+  private _value: string = "";
   constructor() {
     makeObservable<ReposListStore, PrivateFilds>(this, {
       _list: observable.ref,
       _meta: observable,
+      _value: observable,
       list: computed,
       meta: computed,
       getOrganizationReposList: action,
-      setList: action,
+      setValue: action,
     });
   }
 
@@ -50,9 +52,10 @@ export default class ReposListStore implements IGitHubStore, ILocalStore {
     return this._meta;
   }
 
-  setList(e: any) {
-    return e;
+  get value(): string {
+    return this._value;
   }
+
   async getOrganizationReposList(
     params: GetOrganizationReposListParams
   ): Promise<void> {
@@ -90,5 +93,8 @@ export default class ReposListStore implements IGitHubStore, ILocalStore {
   //     // return this.getOrganizationReposList({search});
   //   }
   // );
+  setValue(value: string) {
+    this._value = value;
+  }
   destroy() {}
 }
