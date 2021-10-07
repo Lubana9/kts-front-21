@@ -5,12 +5,11 @@ import "./style.scss";
 export type inputProps = {
   value: string;
   onChange: (value: string) => void;
-  placeholder?: string;
 };
-const Input: React.FC<inputProps> = ({ value, onChange, placeholder }) => {
+const Input: React.FC<inputProps> = ({ value, onChange }) => {
   const handelChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange(e.target.value);
+    (e: React.FormEvent<HTMLInputElement>) => {
+      onChange(e.currentTarget.value);
     },
     [onChange]
   );

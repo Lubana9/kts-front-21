@@ -4,7 +4,7 @@ import { Meta } from "@utils/Meta";
 
 import "./style.scss";
 type BtnProps = {
-  onClick: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent) => void;
   children: React.ReactNode;
   isLoading: Meta;
 };
