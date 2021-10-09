@@ -47,7 +47,7 @@ export default class ReposListStore implements IGitHubStore, ILocalStore {
   private _repo: RepoItemModel[] = [];
   private _selectedRepo: RepoItemModel | null = null;
   private _meta: Meta = Meta.initial;
-  private _value: any = "";
+  private _value: string = "";
   private _pageNumber: number = 1;
   constructor() {
     makeObservable<ReposListStore, PrivateFilds>(this, {
@@ -87,7 +87,7 @@ export default class ReposListStore implements IGitHubStore, ILocalStore {
     return this._selectedRepo;
   }
 
-  setValue(value: any): any {
+  setValue(value: string): string {
     return (this._value = value);
   }
   setList(repo: RepoItemModel[]) {

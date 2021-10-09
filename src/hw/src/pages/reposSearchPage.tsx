@@ -7,6 +7,7 @@ import React, {
   useCallback,
 } from "react";
 
+import { BranchesOutlined } from "@ant-design/icons";
 import Button from "@components/button";
 import Input from "@components/input";
 import RepoTile from "@components/repoTile";
@@ -15,10 +16,11 @@ import SearchIcon from "@components/searchIcon";
 import { routes } from "@config/configs";
 import "antd/dist/antd.css";
 import ReposListStore from "@store/GitHubStore";
+import BranchInfoStore from "@store/GitHubStore/BranchesInfoStore";
 import RepoBranchesStore from "@store/GitHubStore/RepoBranchesStore";
 import { Meta } from "@utils/Meta";
 import { useLocalStore } from "@utils/UseLocalStore";
-import { Drawer, Skeleton } from "antd";
+import { Drawer, Skeleton, Empty, Popover } from "antd";
 import { observer } from "mobx-react-lite";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Link } from "react-router-dom";
@@ -32,7 +34,7 @@ const ReposSearchPage: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const githubStore = useLocalStore(() => new ReposListStore());
   const repoBranchesStore = useLocalStore(() => new RepoBranchesStore());
-
+  const branchInfoStore = useLocalStore(() => new BranchInfoStore());
   useEffect(() => {
     githubStore.getOrganizationReposList({
       organizaionName: "ktsstudio",
@@ -46,6 +48,14 @@ const ReposSearchPage: React.FC = () => {
     });
   };
 
+  const getBranchDetails = (reponame: string, owner: string, sha: string) => {
+    branchInfoStore.getBranchesInfo({
+      repo: reponame,
+      owner: owner,
+      sha: sha,
+    });
+  };
+
   const showDrawer = () => {
     setVisible(true);
   };
@@ -55,7 +65,7 @@ const ReposSearchPage: React.FC = () => {
   };
 
   const handelClick = useCallback(() => {
-    if (githubStore.value !== "") {
+    if (githubStore.value) {
       githubStore.getOrganizationReposList({
         organizaionName: githubStore.value,
       });
@@ -84,16 +94,16 @@ const ReposSearchPage: React.FC = () => {
         </form>
       </div>
       {githubStore.meta === Meta.loading && <Skeleton active />}
-
       {githubStore.list.length ? (
         <>
-          {" "}
           <InfiniteScroll
             dataLength={githubStore.list.length}
             next={() =>
-              githubStore.GetAdditionalOrganization({
-                additionalOrganizaionName: "github",
-              })
+              setTimeout(() => {
+                githubStore.GetAdditionalOrganization({
+                  additionalOrganizaionName: githubStore.value,
+                });
+              }, 1500)
             }
             hasMore={true}
             loader={""}
@@ -116,21 +126,36 @@ const ReposSearchPage: React.FC = () => {
           </InfiniteScroll>
         </>
       ) : (
-        <> </>
+        <>{githubStore.meta === Meta.error ? <Empty /> : <></>}</>
       )}
-
       <div>
         <Drawer
-          title="branches"
+          title={<BranchesOutlined />}
           placement="right"
           onClose={onClose}
           visible={visible}
         >
           {repoBranchesStore.branches.map((branches: any) => {
             return (
-              <ul key={branches.commit.sha}>
-                <li> {branches.name} </li>
-              </ul>
+              <Popover placement="left" title="Info">
+                <Link
+                  // onClick={() =>
+                  //   githubStore.list.map((user) => {
+                  //     return getBranchDetails(
+                  //       `${branches.name}`,
+                  //       `${user.owner.login}`,
+                  //       `${branches.commit.sha}`
+                  //     );
+                  //   })
+                  // }
+                  className="card-link_txt"
+                  to={routes.reposDetails.create(`${branches.commit.sha}`)}
+                >
+                  <ul key={branches.commit.sha}>
+                    <li> {branches.name} </li>
+                  </ul>
+                </Link>
+              </Popover>
             );
           })}
         </Drawer>
