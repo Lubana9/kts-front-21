@@ -1,25 +1,27 @@
-@import "@styles/style.css";
+@import "@styles/style.scss";
 
 .card {
   display: flex;
-  border-radius: var(--radius);
-  border: 1px solid var(--color-Border);
+  border-radius: $radius;
+  border: 1px solid $color-Border;
   padding: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
-.card:hover {
-  cursor: pointer;
-}
+
 .card-primary {
-  background: var(--color-background);
+  background: $color-background;
 }
 .card-body {
-  color: var(--color-Hint);
+  color: $color-Hint;
   margin: 0 10px;
 }
 .card-heading {
   margin: 5px 0 0 0;
   padding: 5px 0;
-  color: var(--color-default);
+  color: $color-default;
   white-space: nowrap;
   width: 50%;
   font-weight: bold;
@@ -32,10 +34,13 @@
 }
 .card-link_txt {
   text-decoration: none;
-}
 
-.card-link_txt:hover {
-  color: var(--color-linkHover);
+  &:hover {
+    color: $color-linkHover;
+    transform: scale(1.05);
+    transition: transform 0.3s;
+    box-shadow: 0 0 20px 10px $color--shadow;
+  }
 }
 
 .card-content_txt {

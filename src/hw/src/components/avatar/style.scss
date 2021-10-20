@@ -1,4 +1,4 @@
-@import "@styles/style.css";
+@import "@styles/style.scss";
 
 .icon-content_img {
   width: 100%;
@@ -12,12 +12,12 @@
   height: 80px;
   justify-content: center;
   width: 80px;
-  background-color: var(--color-background);
+  background-color: $color-background;
 }
 
 .icon_content_txt {
   font-size: 40px;
-  color: var(--color-accent);
+  color: $color-accent;
   font-weight: 700;
   text-align: center;
 }

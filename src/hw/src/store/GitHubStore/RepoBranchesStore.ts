@@ -21,14 +21,18 @@ import {
   runInAction,
 } from "mobx";
 
-import { GetOrganizationReposListParams, IGitHubStore } from "./types";
+import {
+  getBranchesList,
+  GetOrganizationRepoBranchesParams,
+  IBranches,
+} from "./types";
 
 const BASE_URL = "https://api.github.com";
 type PrivateFilds = "_branches" | "_meta";
-export default class RepoBranchStore implements IGitHubStore, ILocalStore {
+export default class RepoBranchStore implements IBranches, ILocalStore {
   private readonly apiStore = new ApiStore(BASE_URL);
   private _meta: Meta = Meta.initial;
-  private _branches: CollectionModel<number, RepoBranchesModel> =
+  private _branches: CollectionModel<string, RepoBranchesModel> =
     getIniitCollectionModels();
 
   constructor() {
@@ -37,7 +41,7 @@ export default class RepoBranchStore implements IGitHubStore, ILocalStore {
       _meta: observable,
       metaBranches: computed,
       branches: computed,
-      getOrganizationReposList: action,
+      getBranchesList: action,
     });
   }
   get metaBranches(): Meta {
@@ -46,8 +50,8 @@ export default class RepoBranchStore implements IGitHubStore, ILocalStore {
   get branches(): RepoBranchesModel[] {
     return linearizedCollection(this._branches);
   }
-  async getOrganizationReposList(
-    params: GetOrganizationReposListParams
+  async getBranchesList(
+    params: GetOrganizationRepoBranchesParams
   ): Promise<void> {
     this._meta = Meta.loading;
     this._branches = getIniitCollectionModels();
@@ -55,7 +59,7 @@ export default class RepoBranchStore implements IGitHubStore, ILocalStore {
       method: HTTPMethod.get,
       data: {},
       headers: {},
-      endpoint: `repos/ktsstudio/${params.organizaionName}/branches`,
+      endpoint: getBranchesList(params.owner, params.repo),
     });
     runInAction(() => {
       if (response.success) {
@@ -65,7 +69,10 @@ export default class RepoBranchStore implements IGitHubStore, ILocalStore {
             branches.push(normalaizRepoBranches(item));
           }
           this._meta = Meta.succses;
-          this._branches = normalaizCollection(branches, (item) => item.sha);
+          this._branches = normalaizCollection(
+            branches,
+            (item) => item.commit.sha
+          );
           return;
         } catch (e) {
           // eslint-disable-next-line no-console
