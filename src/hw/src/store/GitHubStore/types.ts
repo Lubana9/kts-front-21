@@ -11,17 +11,8 @@ export type GetOrganizationRepoBranchesParams = {
   repo: string;
 };
 
-export type GetBranchesInfoParams = {
-  owner: string;
-  repo: string;
-  sha: string;
-};
-
 export const getBranchesList = (owner: string, repo: string) =>
   `/repos/${owner}/${repo}/branches`;
-
-export const getBranchesInfo = (owner: string, repo: string, sha: string) =>
-  `/repos/${owner}/${repo}/commits/${sha}`;
 
 export interface IGitHubStore {
   getOrganizationReposList(
@@ -31,8 +22,4 @@ export interface IGitHubStore {
 
 export interface IBranches {
   getBranchesList(params: GetOrganizationRepoBranchesParams): Promise<void>;
-}
-
-export interface IBranchesInfo {
-  getBranchesInfo(params: GetBranchesInfoParams): Promise<void>;
 }

@@ -16,7 +16,6 @@ import SearchIcon from "@components/searchIcon";
 import { routes } from "@config/configs";
 import "antd/dist/antd.css";
 import ReposListStore from "@store/GitHubStore";
-import BranchInfoStore from "@store/GitHubStore/BranchesInfoStore";
 import RepoBranchesStore from "@store/GitHubStore/RepoBranchesStore";
 import { Meta } from "@utils/Meta";
 import { useLocalStore } from "@utils/UseLocalStore";
@@ -34,7 +33,6 @@ const ReposSearchPage: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const githubStore = useLocalStore(() => new ReposListStore());
   const repoBranchesStore = useLocalStore(() => new RepoBranchesStore());
-  const branchInfoStore = useLocalStore(() => new BranchInfoStore());
   useEffect(() => {
     githubStore.getOrganizationReposList({
       organizaionName: "ktsstudio",
@@ -45,14 +43,6 @@ const ReposSearchPage: React.FC = () => {
     repoBranchesStore.getBranchesList({
       repo: reponame,
       owner: owner,
-    });
-  };
-
-  const getBranchDetails = (reponame: string, owner: string, sha: string) => {
-    branchInfoStore.getBranchesInfo({
-      repo: reponame,
-      owner: owner,
-      sha: sha,
     });
   };
 
@@ -137,22 +127,20 @@ const ReposSearchPage: React.FC = () => {
         >
           {repoBranchesStore.branches.map((branches: any) => {
             return (
-              <Popover placement="left" title="Info">
+              <Popover
+                placement="left"
+                content={
+                  <div> {branches.protected === true ? "Yes" : "No"} </div>
+                }
+                title=" Protected"
+              >
                 <Link
-                  // onClick={() =>
-                  //   githubStore.list.map((user) => {
-                  //     return getBranchDetails(
-                  //       `${branches.name}`,
-                  //       `${user.owner.login}`,
-                  //       `${branches.commit.sha}`
-                  //     );
-                  //   })
-                  // }
+                  key={branches.commit.sha}
                   className="card-link_txt"
                   to={routes.reposDetails.create(`${branches.commit.sha}`)}
                 >
-                  <ul key={branches.commit.sha}>
-                    <li> {branches.name} </li>
+                  <ul>
+                    <li>{branches.name}</li>
                   </ul>
                 </Link>
               </Popover>

@@ -1,29 +1,18 @@
 export type RepoBranchesApi = {
   name: string;
   commit: commit;
+  protected: boolean;
 };
 
 export type commit = {
   sha: string;
-  url: url;
-};
-export type url = {
-  sha: string;
-  commit: commitInfo;
-};
-export type commitInfo = {
-  author: author;
-};
-
-export type author = {
-  name: string;
-  email: string;
-  date: number;
+  url: string;
 };
 
 export type RepoBranchesModel = {
   name: string;
   commit: commit;
+  protected: boolean;
 };
 
 export const normalaizRepoBranches = (
@@ -31,4 +20,5 @@ export const normalaizRepoBranches = (
 ): RepoBranchesModel => ({
   name: from.name,
   commit: from.commit,
+  protected: from.protected,
 });
