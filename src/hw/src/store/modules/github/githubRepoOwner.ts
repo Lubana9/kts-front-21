@@ -1,5 +1,3 @@
-import { format } from "path";
-
 export type GitHubRepoOwnerApi = {
   id: number;
   url: string;
