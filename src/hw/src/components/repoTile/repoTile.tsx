@@ -16,7 +16,7 @@ const RepoTile: React.FC<RepoTileProps> = ({ repos }) => {
         <h4 className="card-heading">{repos.name}</h4>
         <div className="card-link">
           {" "}
-          <a className="card-link_txt " href="#">
+          <a className="card-link_txt " href="https://kts.studio/">
             {repos.owner.login}
           </a>
         </div>

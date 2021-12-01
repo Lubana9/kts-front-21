@@ -1,6 +1,4 @@
 /* eslint-disable no-console */
-import { FormEvent } from "react";
-
 import {
   normalizeRepoItem,
   RepoItemApi,
@@ -17,10 +15,8 @@ import { ILocalStore } from "@utils/UseLocalStore";
 import {
   action,
   computed,
-  IReactionDisposer,
   makeObservable,
   observable,
-  reaction,
   runInAction,
 } from "mobx";
 
